@@ -3,7 +3,7 @@ FROM alpine:3.7
 LABEL description "Multipurpose rss reader, live stream, mashup, aggregation web application" \
       maintainer="Hardware <contact@meshup.net>"
 
-ARG VERSION=selfoss-2.18-5339432.zip
+ARG VERSION="2.18-5339432"
 ARG SHA256_HASH="ee3f6a13b245e336c949d009e7bf2c195ea243639f956271c188663eebb3a24c"
 
 ENV GID=991 UID=991 CRON_PERIOD=15m

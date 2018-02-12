@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
-docker run --name selfoss -d -P jantman/docker-selfoss:latest
+docker run --name selfoss -d -p 8888:8888 jantman/docker-selfoss:latest
 docker logs -f selfoss

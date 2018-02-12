@@ -10,6 +10,7 @@ sed -i "s/FPM_GID/$FPM_GID/g" /etc/php7/php-fpm.conf
 
 # Selfoss custom configuration file
 sed -i "s/lkjl1289/`cat \/dev\/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1`/g" /selfoss/defaults.ini
+sed -i 's/logger_destination=.*/logger_destination=error_log/' /selfoss/defaults.ini
 rm -f /selfoss/config.ini
 
 if [ -e /selfoss/data/config.ini ]; then
@@ -27,7 +28,7 @@ fi
 # Set permissions
 chown -R $UID:$GID /services /var/log /var/lib/nginx
 
-chown -R $FPM_UID:$FPM_GID /selfoss
+chown -R $FPM_UID:$FPM_GID /selfoss /selfoss/data
 
 # RUN !
 exec su-exec $UID:$GID /bin/s6-svscan /services

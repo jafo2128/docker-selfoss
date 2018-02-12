@@ -1,4 +1,5 @@
 #!/bin/bash -x
 
-docker run --name selfoss -d -p 8888:8888 jantman/docker-selfoss:latest
-docker logs -f selfoss
+docker run --name selfoss-test -d -P jantman/docker-selfoss:latest
+docker inspect --format='{{.NetworkSettings.Ports}}' selfoss-test
+docker logs -f selfoss-test

@@ -7,6 +7,8 @@ FPM_GID=$(id -g $FPM_USER)
 sed -i "s/FPM_USER/$FPM_USER/g" /etc/php7/php-fpm.conf
 sed -i "s/FPM_UID/$FPM_UID/g" /etc/php7/php-fpm.conf
 sed -i "s/FPM_GID/$FPM_GID/g" /etc/php7/php-fpm.conf
+sed -i "s/FPM_UID/$FPM_UID/g" /services/cron/run
+sed -i "s/FPM_GID/$FPM_GID/g" /services/cron/run
 
 # Selfoss custom configuration file
 sed -i "s/lkjl1289/`cat \/dev\/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1`/g" /selfoss/defaults.ini

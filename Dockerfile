@@ -40,7 +40,7 @@ RUN echo "@community http://nl.alpinelinux.org/alpine/v3.7/community" >> /etc/ap
     php7-session@community \
     php7-mbstring@community \
     tini@community \
- && wget -q "https://bintray.com/fossar/selfoss/download_file?file_path=selfoss-$VERSION.zip" -P /tmp \
+ && wget -q "https://bintray.com/fossar/selfoss/download_file?file_path=selfoss-$VERSION.zip" -O /tmp/selfoss-$VERSION.zip \
  && CHECKSUM=$(sha256sum /tmp/selfoss-$VERSION.zip | awk '{print $1}') \
  && if [ "${CHECKSUM}" != "${SHA256_HASH}" ]; then echo "Warning! Checksum does not match!" && exit 1; fi \
  && mkdir /selfoss && unzip -q /tmp/selfoss-$VERSION.zip -d /selfoss \

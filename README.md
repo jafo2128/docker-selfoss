@@ -2,7 +2,7 @@
 
 ![selfoss](https://i.imgur.com/8hJyBgk.png "selfoss")
 
-Current build: [selfoss-2.18-5339432](https://bintray.com/fossar/selfoss/selfoss-git/2.18-5339432) December 2, 2017
+Current build: [selfoss-2.18-77d57d1](https://bintray.com/fossar/selfoss/selfoss-git/2.18-77d57d1) January 9, 2018.
 
 ## You probably want [hardware/selfoss](https://github.com/hardware/selfoss)
 

@@ -3,8 +3,11 @@ FROM wonderfall/nginx-php:7.1
 LABEL description "Multipurpose rss reader, live stream, mashup, aggregation web application" \
       maintainer="Hardware <contact@meshup.net>"
 
-ARG VERSION="2.18-5339432"
-ARG SHA256_HASH="ee3f6a13b245e336c949d009e7bf2c195ea243639f956271c188663eebb3a24c"
+ARG VERSION="2.18-77d57d1"
+# Note: bintray doesn't publish checksums, but publishes GPG signatures.
+# When updating the version, download the zip and .asc signature, check the
+# signature, and if it's good, get the sha256sum of the zip file.
+ARG SHA256_HASH="b3698db0f3757f77c84bd779407ee7664749b5307b0e5057e17251534fa3ed7a"
 
 ENV GID=991 UID=991 CRON_PERIOD=15m UPLOAD_MAX_SIZE=25M MEMORY_LIMIT=128M
 

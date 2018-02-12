@@ -9,7 +9,7 @@ ARG VERSION="2.18-77d57d1"
 # signature, and if it's good, get the sha256sum of the zip file.
 ARG SHA256_HASH="b3698db0f3757f77c84bd779407ee7664749b5307b0e5057e17251534fa3ed7a"
 
-ENV GID=991 UID=991 CRON_PERIOD=15m
+ENV GID=0 UID=0 FPM_USER=nobody CRON_PERIOD=15m
 
 RUN echo "@community http://nl.alpinelinux.org/alpine/v3.7/community" >> /etc/apk/repositories \
  && apk -U upgrade \
@@ -50,6 +50,7 @@ RUN echo "@community http://nl.alpinelinux.org/alpine/v3.7/community" >> /etc/ap
 
 COPY rootfs /
 RUN chmod +x /usr/local/bin/run.sh /services/*/run /services/.s6-svscan/*
+RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 VOLUME /selfoss/data
 EXPOSE 8888
 CMD ["run.sh"]

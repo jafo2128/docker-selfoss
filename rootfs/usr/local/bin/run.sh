@@ -1,7 +1,12 @@
-#!/bin/sh
+#!/bin/sh -x
 
 # Set cron period
 sed -i "s/<CRON_PERIOD>/$CRON_PERIOD/g" /services/cron/run
+FPM_UID=$(id -u $FPM_USER)
+FPM_GID=$(id -g $FPM_USER)
+sed -i "s/FPM_USER/$FPM_USER/g" /etc/php7/php-fpm.conf
+sed -i "s/FPM_UID/$FPM_UID/g" /etc/php7/php-fpm.conf
+sed -i "s/FPM_GID/$FPM_GID/g" /etc/php7/php-fpm.conf
 
 # Selfoss custom configuration file
 sed -i "s/lkjl1289/`cat \/dev\/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1`/g" /selfoss/defaults.ini
@@ -20,7 +25,9 @@ if [ ! "$(ls -Ad /selfoss/data/*/)" ]; then
 fi
 
 # Set permissions
-chown -R $UID:$GID /selfoss /services /var/log /var/lib/nginx
+chown -R $UID:$GID /services /var/log /var/lib/nginx
+
+chown -R $FPM_UID:$FPM_GID /selfoss
 
 # RUN !
 exec su-exec $UID:$GID /bin/s6-svscan /services

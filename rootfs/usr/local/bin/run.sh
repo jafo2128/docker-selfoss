@@ -12,7 +12,8 @@ sed -i "s/FPM_GID/$FPM_GID/g" /services/cron/run
 
 # Selfoss custom configuration file
 sed -i "s/lkjl1289/`cat \/dev\/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1`/g" /selfoss/defaults.ini
-sed -i 's/logger_destination=.*/logger_destination=error_log/' /selfoss/defaults.ini
+#sed -i 's/logger_destination=.*/logger_destination=error_log/' /selfoss/defaults.ini
+#sed -i 's/logger_level=.*/logger_level=INFO/' /selfoss/defaults.ini
 rm -f /selfoss/config.ini
 
 if [ -e /selfoss/data/config.ini ]; then

@@ -50,7 +50,7 @@ RUN echo "@community http://nl.alpinelinux.org/alpine/v3.7/community" >> /etc/ap
 
 COPY rootfs /
 RUN chmod +x /usr/local/bin/run.sh /services/*/run /services/.s6-svscan/*
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
+#RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 VOLUME /selfoss/data
 EXPOSE 8888
 CMD ["run.sh"]

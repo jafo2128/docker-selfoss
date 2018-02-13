@@ -5,6 +5,7 @@ sed -i "s/<CRON_PERIOD>/$CRON_PERIOD/g" /services/cron/run
 
 # Selfoss custom configuration file
 sed -i "s/lkjl1289/`cat \/dev\/urandom | tr -dc 'a-zA-Z' | fold -w 20 | head -n 1`/g" /selfoss/defaults.ini
+sed -i "s/logger_level=.*/logger_level=DEBUG/g" /selfoss/defaults.ini
 rm -f /selfoss/config.ini
 
 if [ -e /selfoss/data/config.ini ]; then

@@ -3,8 +3,11 @@ FROM alpine:3.7
 LABEL description "Multipurpose rss reader, live stream, mashup, aggregation web application" \
       maintainer="Hardware <contact@meshup.net>"
 
-ARG VERSION=2.17
-ARG SHA256_HASH="5c880fe79326c0e584be21faeaebe805fac792f2c56b7fd5144584e5137a608d"
+ARG VERSION="2.18-77d57d1"
+# Note: bintray doesn't publish checksums, but publishes GPG signatures.
+# When updating the version, download the zip and .asc signature, check the
+# signature, and if it's good, get the sha256sum of the zip file.
+ARG SHA256_HASH="b3698db0f3757f77c84bd779407ee7664749b5307b0e5057e17251534fa3ed7a"
 
 ENV GID=991 UID=991 CRON_PERIOD=15m
 
@@ -37,7 +40,7 @@ RUN echo "@community http://nl.alpinelinux.org/alpine/v3.7/community" >> /etc/ap
     php7-session@community \
     php7-mbstring@community \
     tini@community \
- && wget -q https://github.com/SSilence/selfoss/releases/download/$VERSION/selfoss-$VERSION.zip -P /tmp \
+ && wget -q "https://bintray.com/fossar/selfoss/download_file?file_path=selfoss-$VERSION.zip" -O /tmp/selfoss-$VERSION.zip \
  && CHECKSUM=$(sha256sum /tmp/selfoss-$VERSION.zip | awk '{print $1}') \
  && if [ "${CHECKSUM}" != "${SHA256_HASH}" ]; then echo "Warning! Checksum does not match!" && exit 1; fi \
  && mkdir /selfoss && unzip -q /tmp/selfoss-$VERSION.zip -d /selfoss \
